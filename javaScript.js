@@ -1,72 +1,43 @@
 class producto {
-    constructor(tipo,color,origen) {
-        this.tipo = tipo;
-        this.color = color;
-        this.origen = origen;
-        this.info = `Soy un ${this.tipo}, fui fabricado en ${this.origen} y mi color es ${this.color}`;
-    }
-    verInfo() {
-        console.log(this.info)
+    constructor(nombre, marca, precio, envio) {
+    this.nombre = nombre
+    this.marca = marca
+    this.precio = precio
+    this.envio = envio
     }
 }
 
-let monitor = new producto('monitor', 'negro', 'China')
-let teclado = new producto('teclado', 'negro', 'Argentina')
-let auricular = new producto('auricular', 'blanco', 'Taiwan')
+let producto1 = new producto(' monitor', ' Zowie', 100000, ' gratuito' )
+let producto2 = new producto(' teclado', ' Redragon', 5000, ' gratuito' )
+let producto3 = new producto(' mouse', ' Hyperx', 3000, 800 )
+let producto4 = new producto(' procesador', ' Intel i5 9gen', 60000, ' gratuito' )
+let producto5 = new producto(' memoria ssd', ' Kingston 960 gb', 14000, ' gratuito' )
+let producto6 = new producto(' mouse pad', ' Logitech', 2500, 900 )
 
-monitor.verInfo();
-teclado.verInfo();
-auricular.verInfo();
+let productos = [producto1 , producto2, producto3, producto4, producto5, producto6]
 
+let divProductos = document.getElementById('divProductos')
 
+productos.forEach((producto, indice) => {
+    divProductos.innerHTML += `
+    <div class="card presentacionProductos" id="producto${indice + 1}" style="width: 18rem;">
+        <img src="./imagenes/producto${indice + 1}.jpg" class="card-img-top" alt="...">
+        <div class="card-body cardProducto">
+            <h5 class="card-title">producto ${indice + 1}</h5>
+            <p class="card-text">nombre:${producto.nombre}</p>
+            <p class="card-text">marca:${producto.marca}</p>
+            <p class="card-text">precio:${producto.precio}</p>
+            <p class="card-text">envio:${producto.envio}</p>
+            <a href="#" id="botonComprar" class="btn btn-dark">Comprar</a>
+        </div>
+    </div>
+    `
+}) 
 
-//Desafio N°6 Arrays
+let botonComprar = document.getElementById('botonComprar');
 
-let mercaderia = ['placas madres', 'procesadores', 'mouses', 'gabinetes', 'memorias ram', 'pad' ] ;
+botonComprar.addEventListener('click',avisoCompra);
 
-for (let i = 0; i < 6; i++) {
-    console.log(mercaderia[i]);
+function avisoCompra() {
+    alert('¿Estas a punto de comprar este objeto, estas seguro/a?')
 }
-//Desafio complementario utilizando sort (Acomodar alfabeticamente)
-
-mercaderia.sort((a,b) => {
-    if (a==b) {
-        return 0;
-    }
-    if (a<b) {
-        return -1;
-    }
-    return 1;
-})
-console.log(mercaderia);
-
-let precio, total, cuotas, resultado;
-function ingresarValores(){
-    precio = parseInt(prompt('Buen dia, porfavor indique el precio del producto a calcular:'));
-    cuotas = parseInt(prompt('Porfavor indique en numero de pagos:\n1 - (5% de descuento)\n3 - (Sin interés)\n6 - (Sin interés)\n12 - (10% de interés)'));
-}
-const calculoPrecio = () => {
-    if(cuotas == 1){
-        total = precio - (precio * 0.05);
-    } else if(cuotas == 3){
-        total = precio;
-    } else if(cuotas == 6){
-        total = precio;
-    } else if(cuotas == 12){
-        total = precio + (precio * 0.1);
-    } else {
-        alert('El número de pagos ingresado es inválido, intente nuevamente.');
-        ingresarValores();
-    }
-}
-function cuotasTotal(){
-    ingresarValores();
-    calculoPrecio();
-    resultado = total / cuotas;
-    if(cuotas > 1){
-        alert('El total a pagar es: $' + total + ' en ' + cuotas + ' pagos de $' + resultado);
-    } else {
-        alert('El total en un pago es: $' + total);
-    }
-}
-cuotasTotal();
