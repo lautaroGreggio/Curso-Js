@@ -40,4 +40,41 @@ botonComprar.addEventListener('click',avisoCompra);
 
 function avisoCompra() {
     alert('¿Estas a punto de comprar este objeto, estas seguro/a?')
+};
+
+/// 30/11
+
+class Pedidos {
+    constructor(componentes, formaPago, tipoEnvio) {
+        this.componentes = componentes;
+        this.formaPago = formaPago;
+        this.tipoEnvio = tipoEnvio;
+    }
+
+    datosDeCommpra() {
+        return (`${this.componentes} - ${this.formaPago} - ${this.tipoEnvio}`)
+    }
 }
+
+let informacionDeCompra = []
+
+let formulario = document.getElementById('formCompra');
+
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    let datosFormulario = new FormData(e.target)
+    let pedido = new Pedidos(datosFormulario.get('componentes'), datosFormulario.get('formaPago'), datosFormulario.get('tipoEnvio'))
+    informacionDeCompra.push(pedido)
+
+    localStorage.setItem('informacionDeCompra', JSON.stringify(informacionDeCompra))
+
+    formulario.reset()
+} )
+
+let areaDeCompras = document.getElementById('areaDeCompras')
+
+document.getElementById('botonComprar').addEventListener('click', () => {
+    let parseador = JSON.parse(localStorage.getItem('tareas'))
+
+})
