@@ -21,6 +21,31 @@ h2 {
     width: 100%;
 }
 
+.infoDeCompra {
+    text-align: center;
+    margin-left: 300px;
+}
+
+.modalContainer {
+display: flex;
+background-color: #212529;
+color: #ffffff;
+justify-content: center;
+padding: 5px;
+pointer-events: none;
+opacity:0;
+}
+
+.show {
+    pointer-events: auto;
+    opacity:1;
+}
+
+.textoModal {
+    width: 500px;
+    border-radius: 10px;
+}
+
 footer {
     color: #ffffff;
     background: #212529;

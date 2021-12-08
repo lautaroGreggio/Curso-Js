@@ -72,9 +72,26 @@ formulario.addEventListener('submit', (e) => {
     formulario.reset()
 } )
 
-let areaDeCompras = document.getElementById('areaDeCompras')
+//let areaDeCompras = document.getElementById('areaDeCompras')
+//Reemplazo de un elemento para cumnplir con un desafio de JQuery
+let areaDeCompras = $('#areaDeCompras')
 
 document.getElementById('botonComprar').addEventListener('click', () => {
     let parseador = JSON.parse(localStorage.getItem('tareas'))
 
 })
+
+const open = document.getElementById('open');
+const modalContainer = document.getElementById('modalContainer');
+const close = document.getElementById('close');
+
+open.addEventListener('click', () => {
+    modalContainer.classList.add('show')
+    
+})
+
+close.addEventListener('click', () => {
+    modalContainer.classList.remove('show')
+})
+
+
